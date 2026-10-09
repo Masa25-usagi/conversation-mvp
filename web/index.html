@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>会話から、もう一歩。</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><div class="brand"><span class="mark" aria-hidden="true">◌</span><span>会話から、もう一歩。</span></div><span id="connection" class="status">接続しています</span></header>
+<main>
+  <section class="intro"><p class="eyebrow">あなた専用の小さな実験室</p><h1>話したアイデアが、<br>小さな試作になる。</h1><p class="lead">気づいた理由も、黙っていた理由も。<br>会話の流れと一緒に、ここに残します。</p></section>
+  <section class="controls" aria-label="入力を選ぶ">
+    <div class="toolbar"><button id="demo" class="primary">会話のデモを試す</button><button id="voice">音声AIと話す</button><button id="voice-stop" hidden>音声AIを止める</button><button id="finish">会話を終えて確認する</button></div>
+    <p id="mode" class="subtle"></p>
+    <section id="voice-panel" hidden aria-label="音声AIとの会話">
+      <h2>音声AIと話す</h2>
+      <p>話し終わったら送信すると、AIが日本語で返答します。録音は1回15秒までです。</p>
+      <p class="subtle">ここは相談用の音声会話です。試作の依頼は「発言を文字で試す」か、連続文字起こしから受け付けます。</p>
+      <p id="voice-provider" class="subtle"></p>
+      <label class="check"><input type="checkbox" id="voice-reviewed"> マイク音声の外部APIへの送信と、参加者への周知を確認しました。</label>
+      <div class="toolbar"><button id="voice-record" class="primary">マイクで話す</button><button id="voice-send" disabled>録音を終えて送信</button><button id="voice-cancel" disabled>録音を取り消す</button></div>
+      <p id="voice-status" role="status">マイクは停止しています。</p>
+      <form id="voice-text-form"><label for="voice-text">文字で話しかけて、音声で返答を聞く</label><div class="text-row"><input id="voice-text" maxlength="2000" autocomplete="off" placeholder="今日の買い物を忘れない工夫を教えて" required><button id="voice-text-send">話しかける</button></div></form>
+      <div id="voice-conversation" aria-live="polite"></div>
+    </section>
+    <details id="audio-settings"><summary>PCの音声を使う</summary><div class="audio-content"><p>接続前に、入力元の利用条件・参加者への周知・保存方針を確認してください。</p><div id="requirements" class="requirements"></div><label class="check"><input type="checkbox" id="reviewed"> この入力に必要な確認と周知を行いました。</label><label>入力元 <select id="audio-source"><option value="browser_mic">PCマイク</option><option value="browser_system">タブ・スピーカー音声</option><option value="browser_mixed">マイク＋会議音声</option><option value="ffmpeg">設定したOSデバイス</option></select></label><label>マイク <select id="microphone"><option value="">既定のデバイス</option></select></label><div class="toolbar"><button id="record">文字起こしを始める</button><button id="stop" disabled>止める</button><button id="devices">マイク一覧を更新する</button></div><p id="audio-status" role="status" class="subtle">音声を取得していません。</p></div></details>
+    <form id="text-input"><label for="utterance">発言を文字で試す</label><div class="text-row"><input id="utterance" autocomplete="off" maxlength="8000" placeholder="近所の散歩を決めるアプリを、小さく試作したい。" required><button>追加する</button></div></form>
+    <p id="error" role="alert" hidden></p>
+  </section>
+  <section class="workspace"><div><div class="section-title"><h2>会話の流れ</h2><span>時刻と判断の理由</span></div><ol id="timeline" class="timeline"><li class="empty">デモを始めるか、発言を追加してください。</li></ol></div><aside><div class="section-title"><h2>会話からできたもの</h2></div><div id="artifacts"><p class="empty">試作ができると、元の発言と一緒にここに届きます。</p></div><div class="section-title notes-title"><h2>自分だけへの提案</h2></div><div id="suggestions"><p class="empty">提案はあなたの画面だけに表示します。</p></div><div id="voice-result" aria-live="polite"></div></aside></section>
+  <footer>勝手に試してよいが、勝手に確定しない。<span>公開・本番反映・削除は行いません。</span></footer>
+</main>
+<dialog id="preview"><div class="preview-head"><h2>隔離された試作</h2><button id="close-preview">閉じる</button></div><iframe id="preview-frame" title="会話から作った試作" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe></dialog>
+<script>/*BOOT*/</script><script src="/app.js" defer></script>
+</body></html>

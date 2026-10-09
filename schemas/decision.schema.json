@@ -1,0 +1,12 @@
+{
+  "type": "object", "additionalProperties": false,
+  "required": ["action", "reason", "context_interpretation", "title", "brief", "operations"],
+  "properties": {
+    "action": {"type": "string", "enum": ["IGNORE", "SUGGEST_PRIVATE", "START_PROTOTYPE", "CALL_VOICE_AI", "REQUIRE_PERMISSION"]},
+    "reason": {"type": "string", "minLength": 1, "maxLength": 400},
+    "context_interpretation": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "title": {"type": "string", "maxLength": 120},
+    "brief": {"type": "string", "maxLength": 4000},
+    "operations": {"type": "array", "maxItems": 12, "items": {"type": "string", "enum": ["show_private", "write_note", "isolated_prototype", "voice_session", "meeting_speech", "external_post", "external_send", "publish", "charge", "production_write", "data_delete"]}}
+  }
+}

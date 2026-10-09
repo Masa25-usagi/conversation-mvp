@@ -1,0 +1,67 @@
+[app]
+host = "127.0.0.1"
+port = 8765
+runtime_dir = "../conversation-mvp-runtime"
+context_seconds = 180
+context_max_utterances = 40
+lookahead_seconds = 1.2
+prototype_limit_per_session = 3
+prototype_cooldown_seconds = 15
+queue_limit = 64
+meeting_goal = "会話で生まれたアイデアを、個人用の小さな試作として確かめる。"
+prior_policy = "小さなローカル試作と個人向け提案だけを自動化する。公開・本番反映・削除は行わない。"
+
+[input]
+source = "demo" # demo | browser | ffmpeg | jsonl
+chunk_seconds = 4
+sample_rate = 16000
+min_rms = 0.008
+whisper_url = "http://127.0.0.1:8080/inference"
+language = "ja"
+timeout_seconds = 30
+# Example for macOS; check actual device index before use.
+ffmpeg_args = ["-f", "avfoundation", "-i", ":0"]
+
+[trigger]
+provider = "rules" # rules | ollama | json_http
+model = "temporary-rules"
+url = "http://127.0.0.1:11434/api/chat"
+timeout_seconds = 8
+billable = false
+
+[main]
+provider = "rules"
+model = "temporary-context-policy"
+url = "http://127.0.0.1:11434/api/chat"
+timeout_seconds = 30
+billable = false
+
+[coder]
+provider = "template" # template | ollama | json_http
+model = "local-small-prototype"
+url = "http://127.0.0.1:11434/api/chat"
+timeout_seconds = 90
+billable = false
+max_files = 8
+max_total_bytes = 200000
+
+[voice]
+provider = "stub" # stub | json_http (your documented voice-session bridge)
+model = "unconfigured"
+url = "http://127.0.0.1:8890/voice"
+timeout_seconds = 10
+session_seconds = 10
+billable = false
+auto_keywords = []
+
+[permissions]
+# Explicit opt-in to send conversation data outside this computer.
+external_model_data = false
+# A separate opt-in for configured services that may charge per request.
+paid_model_calls = false
+
+[aliases]
+# Wake names are user configuration; these are not model names.
+assistant = ["コーリン", "コリン", "こーりん"]
+# Only explicit aliases are normalized; originals always remain in the audit log.
+terms = { "プロトタイプ" = ["プロトタイプ", "ぷろとたいぷ", "プロト タイプ"], "Codex" = ["コーデックス", "こーでっくす"] }

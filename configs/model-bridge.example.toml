@@ -1,0 +1,13 @@
+# This is THIS PROJECT'S normalized bridge contract, not a vendor API.
+# Jev and similar fast models require a verified provider-specific bridge.
+[trigger]
+provider = "json_http"
+model = "REPLACE_WITH_CONFIRMED_MODEL_NAME"
+url = "http://127.0.0.1:8891/judge"
+api_key_env = "REMOTE_MODEL_API_KEY"
+timeout_seconds = 8
+billable = false
+# Only enter confirmed prices and currency; absent rates mean unknown cost.
+# input_price_per_million = 0.0
+# output_price_per_million = 0.0
+# currency = "USD"

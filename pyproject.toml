@@ -1,0 +1,9 @@
+[project]
+name = "conversation-mvp"
+version = "0.1.0"
+description = "Local conversation signals, private suggestions, and isolated prototypes"
+requires-python = ">=3.11"
+dependencies = []
+
+# This is a source distribution. Run `python3 -m conversation_mvp` from the
+# extracted folder; no pip install or build backend is needed for this MVP.

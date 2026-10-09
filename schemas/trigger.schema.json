@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["trigger", "confidence", "reason"],
+  "properties": {
+    "trigger": {"type": "string", "enum": ["IGNORE", "SUGGEST_PRIVATE", "CALL_VOICE_AI", "TRIGGER_PROTOTYPE", "REQUIRE_PERMISSION"]},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "reason": {"type": "string", "minLength": 1, "maxLength": 400}
+  }
+}

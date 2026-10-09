@@ -1,0 +1,16 @@
+# Replace each model name with an installed, confirmed model before use.
+# No model is downloaded automatically.
+[trigger]
+provider = "ollama"
+model = "REPLACE_WITH_CONFIRMED_FAST_MODEL"
+url = "http://127.0.0.1:11434/api/chat"
+
+[main]
+provider = "ollama"
+model = "REPLACE_WITH_CONFIRMED_CONTEXT_MODEL"
+url = "http://127.0.0.1:11434/api/chat"
+
+[coder]
+provider = "ollama"
+model = "REPLACE_WITH_CONFIRMED_CODING_MODEL"
+url = "http://127.0.0.1:11434/api/chat"
